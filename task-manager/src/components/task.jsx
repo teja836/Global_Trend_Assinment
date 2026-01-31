@@ -6,7 +6,7 @@ const TaskManager = () => {
   const [input, setInput] = useState("");
   const [editingId, setEditingId] = useState(null);
 
-  /* ===== FETCH TASKS ===== */
+
   const fetchTasks = async () => {
     const res = await fetch(`${API_URL}/api/task/gettask`);
     const data = await res.json();
@@ -19,7 +19,7 @@ const TaskManager = () => {
     fetchTasks();
   }, []);
 
-  /* ===== ADD / UPDATE ===== */
+  // UPDATE
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -49,7 +49,7 @@ const TaskManager = () => {
     fetchTasks();
   };
 
-  /* ===== DELETE ===== */
+  // DELETE
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this task?")) return;
 
@@ -59,7 +59,7 @@ const TaskManager = () => {
     fetchTasks();
   };
 
-  /* ===== FILTER LOGIC (FIXED) ===== */
+  //FILTER 
   const visibleTasks =
     editingId === null
       ? tasks.filter((task) =>
@@ -74,7 +74,7 @@ const TaskManager = () => {
         Task Manager
       </h1>
 
-      {/* Input Section */}
+     
       <form onSubmit={handleSubmit} className="flex justify-center gap-4 mb-10">
         <input
           type="text"
@@ -100,7 +100,7 @@ const TaskManager = () => {
         </button>
       </form>
 
-      {/* Task Cards */}
+     
       <ul className="max-w-2xl mx-auto space-y-4">
         {visibleTasks.map((task) => (
           <li
@@ -112,13 +112,13 @@ const TaskManager = () => {
             transition-all duration-200
           "
           >
-            {/* Task Info */}
+            
             <div>
               <p className="text-xs text-gray-400 mb-1">ID: {task.id}</p>
               <p className="text-lg font-medium text-gray-800">{task.name}</p>
             </div>
 
-            {/* Actions */}
+            
             <div className="flex gap-3">
               <button
                 onClick={() => {
