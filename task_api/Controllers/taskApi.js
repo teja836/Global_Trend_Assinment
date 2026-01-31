@@ -3,7 +3,7 @@ const database = require("../Database/dbConnect");
 
 const task = express.Router();
 
-/* ================= ADD TASK ================= */
+//ADD TASK 
 task.post("/addtask", (req, res) => {
   const { name } = req.body;
 
@@ -29,7 +29,7 @@ task.post("/addtask", (req, res) => {
   });
 });
 
-/* ================= GET TASK ================= */
+// GET TASK 
 task.get("/gettask", (req, res) => {
   const getTask = "SELECT * FROM task WHERE deleted_at=0";
   database.query(getTask, (error, results) => {
@@ -40,7 +40,7 @@ task.get("/gettask", (req, res) => {
   });
 });
 
-/* ================= UPDATE TASK (FIXED) ================= */
+// UPDATE TASK 
 task.put("/taskupdate/:id", (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
@@ -60,7 +60,7 @@ task.put("/taskupdate/:id", (req, res) => {
   });
 });
 
-/* ================= DELETE TASK ================= */
+// DELETE
 task.delete("/taskdelete/:vid", (req, res) => {
   const vid = req.params.vid;
 
